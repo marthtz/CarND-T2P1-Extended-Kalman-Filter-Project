@@ -64,6 +64,13 @@ public:
    */
   void UpdateEKF(const Eigen::VectorXd &z);
 
+  /**
+   * Common update and estimate for LIDAR and RADAR usign EKF
+   * @param z The measurement at k+1
+   * @param z_pred Predicted values
+   */
+  void UpdateEstimate(const Eigen::VectorXd &z, const Eigen::VectorXd &z_pred);
+
 };
 
 #endif /* KALMAN_FILTER_H_ */
