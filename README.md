@@ -1,3 +1,22 @@
+## Project Code 
+The project was cloned from the official CarND "Extended Kalman Filter" repository (https://github.com/udacity/CarND-Extended-Kalman-Filter-Project).
+
+I've done the following modifications:
+ - tools.cpp:
+   - added RMSE and Jacobian matrix calculation (from term 2, lessoon 5)
+ - kalman_filter.cpp:
+   - added Kalman Filter update code for LIDAR and RADAR (EKF)
+     - calculating h(x') according to lesson 5
+     - added normalization of phi
+     - added new function combining code used by LIDAR and RADAR
+ - FusionEKF.cpp:
+   - added initialization for LIDAR and RADAR (from lesson 5 and tips and tricks)
+   - added prediction with updating F and Q
+   - added updating by setting H and R according to sensor type (normalizing phi for RADAR)
+
+
+
+
 # Extended Kalman Filter Project Starter Code
 Self-Driving Car Engineer Nanodegree Program
 
