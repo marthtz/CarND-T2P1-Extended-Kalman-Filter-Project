@@ -66,10 +66,9 @@ public:
 
   /**
    * Common update and estimate for LIDAR and RADAR usign EKF
-   * @param z The measurement at k+1
-   * @param z_pred Predicted values
+   * @param y Predicted vector subtracted from measurement at k+1 vector
    */
-  void UpdateEstimate(const Eigen::VectorXd &z, const Eigen::VectorXd &z_pred);
+  void UpdateEstimate(const Eigen::VectorXd &y);
 
 };
 

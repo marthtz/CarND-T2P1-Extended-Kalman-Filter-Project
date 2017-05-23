@@ -42,9 +42,10 @@ void KalmanFilter::Update(const VectorXd &z)
     * update the state by using Kalman Filter equations
   */
   VectorXd z_pred = H_ * x_;
+  VectorXd y = z - z_pred;
 
   // Update values and compute new estimate
-  UpdateEstimate(z, z_pred);
+  UpdateEstimate(y);
 }
 
 void KalmanFilter::UpdateEKF(const VectorXd &z)
@@ -72,12 +73,6 @@ void KalmanFilter::UpdateEKF(const VectorXd &z)
   VectorXd z_pred(3);
   z_pred << rho_p, phi_p, rhodot_p;
 
-  // Update values and compute new estimate
-  UpdateEstimate(z, z_pred);
-}
-
-void KalmanFilter::UpdateEstimate(const VectorXd &z, const VectorXd &z_pred)
-{
   VectorXd y = z - z_pred;
 
   // Normalize phi to the range -PI to +PI
@@ -90,6 +85,12 @@ void KalmanFilter::UpdateEstimate(const VectorXd &z, const VectorXd &z_pred)
     y(1) += PI_X2;
   }
 
+  // Update values and compute new estimate
+  UpdateEstimate(y);
+}
+
+void KalmanFilter::UpdateEstimate(const VectorXd &y)
+{
   MatrixXd Ht = H_.transpose();
   MatrixXd S = H_ * P_ * Ht + R_;
   MatrixXd Si = S.inverse();
