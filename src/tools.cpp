@@ -38,7 +38,7 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
     // Coefficient-wise multiplication
     residual = residual.array() * residual.array();
     rmse += residual;
-}
+  }
 
   // Calculate the mean
   rmse = rmse/estimations.size();
