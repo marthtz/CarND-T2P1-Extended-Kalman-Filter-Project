@@ -11,6 +11,12 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 using std::vector;
 
+
+// Set acceleration noise
+static double noise_ax = 9;
+static double noise_ay = 9;
+
+
 /*
  * Constructor.
  */
@@ -148,10 +154,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack)
   // Integrate dt in transition matrix F
   ekf_.F_(0, 2) = dt;
   ekf_.F_(1, 3) = dt;
-
-  // Set acceleration noise
-  double noise_ax = 9;
-  double noise_ay = 9;
 
   // Set process covariance matrix Q
   ekf_.Q_ = MatrixXd(4, 4);
